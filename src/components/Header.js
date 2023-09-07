@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import logo from "../assets/image/checklist_2666505.png";
 import profile from "../assets/image/profile.png";
@@ -20,24 +20,88 @@ export const Header = () => {
         }
     }, [darkMode]);
 
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        return navigate('/login');
+    }
+
+    const handleProfile = () => {
+        return navigate('/profile');
+    }
+
+    const activeHeader =
+        "text-base block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500";
+    const inactiveHeader =
+        "text-base block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700";
+
     return (
         <header>
             <nav className="bg-white border-b-2 border-gray-200 dark:bg-gray-900 dark:border-b-1 dark:border-gray-900">
-                <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <div className="max-w-screen-xl flex items-center justify-between mx-auto p-2">
+                    {/* Logo and Link part on the left */}
                     <Link to="/" className="flex items-center">
                         <img src={logo} alt="logo" />
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                            Task Managemnet
+                            Task Management
                         </span>
                     </Link>
 
-                    <div id="nav" className="flex md:order-2">
+                    {/* Middle section for Home, Popular, Top, Upcoming */}
+                    <div id="nav" className="hidden md:flex">
+                        <ul className="flex space-x-4">
+                            <li>
+                                <NavLink
+                                    to="/addtask"
+                                    className={({ isActive }) =>
+                                        isActive ? activeHeader : inactiveHeader
+                                    }
+                                    aria-current="page"
+                                >
+                                    ADD Task
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/team/1"
+                                    className={({ isActive }) =>
+                                        isActive ? activeHeader : inactiveHeader
+                                    }
+                                >
+                                    Team 1
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/team/2"
+                                    className={({ isActive }) =>
+                                        isActive ? activeHeader : inactiveHeader
+                                    }
+                                >
+                                    Team 2
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/team/3"
+                                    className={({ isActive }) =>
+                                        isActive ? activeHeader : inactiveHeader
+                                    }
+                                >
+                                    Team 3
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {/* Right section for Dark Mode, Profile, and Logout */}
+                    <div className="flex items-center space-x-4">
                         <button
                             onClick={() => setDarkMode(!darkMode)}
                             data-tooltip-target="navbar-search-example-toggle-dark-mode-tooltip"
                             type="button"
                             data-toggle-dark="light"
-                            className="flex items-center p-2 mr-2 text-xs font-medium text-gray-700 bg-white rounded-lg border border-gray-200 toggle-dark-state-example hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                            className="flex items-center p-2 text-xs font-medium text-gray-700 bg-white rounded-lg border border-gray-200 toggle-dark-state-example hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                         >
                             {darkMode ? (
                                 <svg
@@ -63,30 +127,29 @@ export const Header = () => {
                                     viewBox="0 0 20 20"
                                     xmlns="http://www.w3.org/2000/svg"
                                 >
-                                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 a0 0010.586 10.586z"></path>
                                 </svg>
                             )}
                         </button>
                         <button
-                            onClick={() => {}}
+                            onClick={handleProfile}
                             data-tooltip-target="navbar-search-example-toggle-dark-mode-tooltip"
                             type="button"
                             data-toggle-dark="light"
-                            className="flex items-center p-2 mr-2 text-xs font-medium text-gray-700 bg-white rounded-lg border border-gray-200 toggle-dark-state-example hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                            className="flex items-center p-2 text-xs font-medium text-gray-700 bg-white rounded-lg border border-gray-200 toggle-dark-state-example hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                         >
-                            <img src={profile} alt=""/>
+                            <img src={profile} alt="" className="w-6 h-6" />
                         </button>
 
                         <button
-                            onClick={() => {}}
+                            onClick={handleLogout}
                             data-tooltip-target="navbar-search-example-toggle-dark-mode-tooltip"
                             type="button"
                             data-toggle-dark="light"
-                            className="flex items-center p-2 mr-2 text-xs font-medium text-gray-700 bg-white rounded-lg border border-gray-200 toggle-dark-state-example hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                            className="flex items-center p-2 text-xs font-medium text-gray-700 bg-white rounded-lg border border-gray-200 toggle-dark-state-example hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                         >
                             Log Out
                         </button>
-                        
                     </div>
                 </div>
             </nav>
