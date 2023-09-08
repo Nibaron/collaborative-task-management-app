@@ -8,7 +8,7 @@ export const Login = () => {
         return navigate('/signup');
     }
     return (
-        <main className="flex items-center justify-center min-h-screen">
+        <main className="flex items justify-center min-h-screen">
             <section className="max-w-md w-full px-4">
                 <div className="text-center mb-6">
                     <h1 className="text-3xl font-semibold text-gray-800 dark:text-white">

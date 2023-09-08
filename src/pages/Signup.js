@@ -1,9 +1,9 @@
-'use client';
+"use client";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 
 export const Signup = () => {
     return (
-        <main className="flex items-center justify-center min-h-screen">
+        <main className="flex items justify-center min-h-screen">
             <section className="max-w-md w-full px-4">
                 <div className="text-center mb-6">
                     <h1 className="text-3xl font-semibold text-gray-800 dark:text-white">
@@ -11,6 +11,19 @@ export const Signup = () => {
                     </h1>
                 </div>
                 <form className="flex flex-col gap-4">
+                    <div>
+                        <div className="mb-2 block">
+                            <Label htmlFor="name22" value="Your Name" />
+                        </div>
+                        <TextInput
+                            id="name22"
+                            placeholder="name"
+                            required
+                            shadow
+                            type="text"
+                            className=""
+                        />
+                    </div>
                     <div>
                         <div className="mb-2 block">
                             <Label htmlFor="email2" value="Your email" />
